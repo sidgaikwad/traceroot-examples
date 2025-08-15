@@ -2,6 +2,7 @@ import os
 from typing import Any, TypedDict
 
 import traceroot
+from traceroot import TraceOptions
 from code_agent import create_code_agent
 from dotenv import load_dotenv
 from execution_agent import create_execution_agent
@@ -12,6 +13,11 @@ from summarize_agent import create_summarize_agent
 load_dotenv()
 
 logger = traceroot.get_logger()
+
+@traceroot.trace(TraceOptions(trace_params=True, trace_return_value=True))
+def func():
+    logger.info("Hello, world!")
+    pass
 
 
 class AgentState(TypedDict):
