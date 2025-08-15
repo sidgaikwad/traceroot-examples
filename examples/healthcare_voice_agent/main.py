@@ -15,6 +15,11 @@ load_dotenv()
 
 logger = traceroot.get_logger()
 
+@traceroot.trace(TraceOptions(trace_params=True, trace_return_value=True))
+def func():
+    logger.info("Hello, world!")
+    pass
+
 
 class VoiceAgentState(TypedDict):
     """State object for the voice agent workflow"""
